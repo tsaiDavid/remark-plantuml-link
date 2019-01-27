@@ -1,4 +1,5 @@
-# node-package-starter
+# remark-plantuml-link
+Generate a plantuml image link from text
 
 ## Table of Contents
 
@@ -7,10 +8,9 @@
 -   [License](#license)
 
 ## Install
-
-    git clone https://github.com/unlight/node-package-starter
-
-For frontend pacakge change "pkgRoot": "." to `dist` in .releaserc.json
+```sh
+npm install --save-dev remark-plantuml-link
+```
 
 ## Similar Projects
 * https://github.com/BrekiTomasson/remark-plantuml
