@@ -7,7 +7,7 @@ export function getImageNode(html: string) {
         const encoded = plantumlEncoder.encode(body);
         return {
             type: 'image',
-            url: `http://www.plantuml.com/plantuml/uml/${encoded}`,
+            url: `http://www.plantuml.com/plantuml/uml/png/${encoded}`,
             alt: null,
             title: null,
         };
