@@ -12,6 +12,9 @@
 
 For frontend pacakge change "pkgRoot": "." to `dist` in .releaserc.json
 
+## Similar Projects
+* https://github.com/BrekiTomasson/remark-plantuml
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md)

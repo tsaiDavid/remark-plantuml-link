@@ -1,20 +1,17 @@
 // var toString = require('mdast-util-to-string');
+import * as visit from 'unist-util-visit';
+import * as plantuml from './plantuml';
 
-export = function attacher(options = {}) {
-    return function transformer(root) {
-        //   let heading = {
-        //     type: 'heading',
-        //     depth: 1,
-        //     children: [{ type: 'text', value: options.heading }],
-        //   };
-
-        //   let first = root.children[0];
-        //   if (first && first.type === 'heading') {
-        //     if (toString(first) !== options.heading) {
-        //       root.children[0] = heading;
-        //     }
-        //   } else {
-        //     root.children.unshift(heading);
-        //   }
+export = function remarkPlantumlPlugin(options = {}) {
+    return function remarkPlantumlTransform(root, vfile) {
+        visit(root, 'html', function remarkPlantumlPluginVisitNode(node, index, parent) {
+            // debugger;
+            if (node.value) {
+                const imageNode = plantuml.getImageNode(node.value);
+                if (imageNode) {
+                    (parent.children as any[]).splice(index + 1, 0, { type: 'paragraph', children: [imageNode] });
+                }
+            }
+        });
     };
 };
