@@ -43,3 +43,5 @@ it('should replace existing next image', () => {
     const result: string = process(content);
     expect(JSON.stringify(result.trim())).toEqual(JSON.stringify(`<!-- ${T}plantuml\n(A)\n${T} -->\n\n![](http://www.plantuml.com/plantuml/uml/png/qt3K1000)`));
 });
+
+it.only('options server');
