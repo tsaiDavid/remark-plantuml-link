@@ -22,3 +22,6 @@ See [CHANGELOG.md](CHANGELOG.md)
 ## License
 
 [MIT](LICENSE) © 2018
+
+## TODO
+* remove microbundle, use tsc

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
     "importHelpers": true,
@@ -11,6 +11,7 @@
     "outDir": "dist",
     "pretty": true,
     "removeComments": false,
+    "skipLibCheck": true,
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
