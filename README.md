@@ -41,7 +41,7 @@ Output:
     (A)
     ``` -->
 
-    ![](http://www.plantuml.com/plantuml/uml/png/qt3K1000)
+    ![](http://www.plantuml.com/plantuml/png/qt3K1000)
 
 ## Similar Projects
 
