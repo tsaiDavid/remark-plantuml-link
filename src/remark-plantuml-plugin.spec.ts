@@ -1,14 +1,14 @@
 /* eslint-disable tslint/config */
 import * as expect from 'expect';
 import * as remark from 'remark';
-import plugin = require('./index');
+import { Options, remarkPlantumlPlugin as plugin } from './remark-plantuml-plugin';
 
 const T = '```';
 
-function process(s: string) {
+function process(markdown: string, options: Options = {}) {
     return remark()
-        .use(plugin)
-        .processSync(s)
+        .use(plugin, options)
+        .processSync(markdown)
         .toString();
 }
 
@@ -45,4 +45,8 @@ it('should replace existing next image', () => {
     expect(JSON.stringify(result.trim())).toEqual(JSON.stringify(`<!-- ${T}plantuml\n(A)\n${T} -->\n\n![](http://www.plantuml.com/plantuml/uml/png/qt3K1000)`));
 });
 
-it.only('options server');
+it('options server', () => {
+    const content = `<!-- ${T}plantuml\n(A)\n${T} -->`;
+    const result: string = process(content, { imageUrl: 'http://blinding.com/cattishness' });
+    expect(JSON.stringify(result.trim())).toEqual(JSON.stringify(`${content}\n\n![](http://blinding.com/cattishness/qt3K1000)`));
+});

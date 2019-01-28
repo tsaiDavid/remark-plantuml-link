@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "plantuml-encoder": "^1.2.5",
+    "tslib": "^1.9.3",
     "unist-util-visit": "^1.4.0"
   },
   "peerDependencies": {
