@@ -2,7 +2,7 @@ import * as plantuml from './plantuml';
 const visit = require('unist-util-visit');
 
 const defaultOptions = {
-    imageUrl: 'http://www.plantuml.com/plantuml/uml/png',
+    imageUrl: 'http://www.plantuml.com/plantuml/png',
 };
 
 export type Options = Partial<typeof defaultOptions>;

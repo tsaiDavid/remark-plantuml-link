@@ -21,6 +21,10 @@ gulp.task('remark', function() {
             g.remark()
                 .use(require('remark-toc'))
                 .use(require('remark-license'))
+                .use(require('remark-usage'), {
+                    example: 'src/example.ts',
+                    main: './src/index.ts',
+                })
         );
 });
 
