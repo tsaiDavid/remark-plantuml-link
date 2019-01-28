@@ -39,6 +39,7 @@
     "export-name": false,
     "no-require-imports": false,
     "no-http-string": false,
+    "no-parameter-reassignment": false,
     "no-unsafe-any": false
   }
 }
