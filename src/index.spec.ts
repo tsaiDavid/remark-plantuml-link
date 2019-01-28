@@ -1,13 +1,14 @@
+/* eslint-disable tslint/config */
 import * as expect from 'expect';
 import * as remark from 'remark';
 import plugin = require('./index');
 
 const T = '```';
 
-function process(string) {
+function process(s: string) {
     return remark()
         .use(plugin)
-        .processSync(string)
+        .processSync(s)
         .toString();
 }
 

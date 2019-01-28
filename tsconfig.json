@@ -15,6 +15,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+    "preserveWatchOutput": true,
     "lib": [
       "esnext"
     ]

@@ -8,11 +8,11 @@ const g = require('gulp-load-plugins')();
 gulp.task('build', sh`
     PATH="$PWD"/node_modules/.bin:$PATH
     rm -rf dist
-    cp -rvf src dist && /usr/bin/find dist -name '*.spec.ts' | xargs rm -f
+    cp -rf src dist && /usr/bin/find dist -name '*.spec.ts' | xargs rm -f
     pushd dist
-    tsc index.ts --target es2015 --sourceMap true --skipLibCheck true --declaration true
+    tsc index.ts --target es2015 --module commonjs --sourceMap true --skipLibCheck true --declaration true
     popd
-    cp -v README.md LICENSE package.json dist
+    cp README.md LICENSE package.json dist
 `);
 
 gulp.task('remark', function() {
@@ -25,8 +25,8 @@ gulp.task('remark', function() {
 });
 
 gulp.task('remark:update', function(done) {
-    const doclint: any = gulp.task('doclint');
-    return doclint().pipe(gulp.dest('.'));
+    const remark: any = gulp.task('remark');
+    return remark().pipe(gulp.dest('.'));
 });
 
 gulp.task('eslint', () => {
