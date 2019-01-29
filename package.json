@@ -30,6 +30,8 @@
     "prepublishOnly": "sed -i -e 's/devDependencies/_devDependencies/g' dist/package.json",
     "copySource": "cp -rv src dist && find dist/src -name '*.spec.ts' | xargs rm -f",
     "build": "npm run gulp -- build",
+    "remark": "npm run gulp -- remark",
+    "remark:update": "npm run gulp -- remark:update",
     "commit": "git-cz"
   },
   "keywords": [
@@ -69,7 +71,11 @@
     "eslint-plugin-unicorn": "^7.1.0",
     "expect": "1.X",
     "gulp": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-ignore": "^2.0.2",
     "gulp-load-plugins": "^1.5.0",
+    "gulp-memory-cache": "^0.3.0",
     "gulp-remark": "^6.0.2",
     "mocha": "^5.2.0",
     "npm-run-all": "^4.1.5",

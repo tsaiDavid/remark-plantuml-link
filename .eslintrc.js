@@ -25,6 +25,7 @@ module.exports = {
         'no-undef': 0,
         'no-unused-vars': 0,
         'indent': 0,
+        'no-console': 0,
         'unicorn/import-index': 0,
         'import/newline-after-import': 0,
         'import/no-duplicates': 1,
