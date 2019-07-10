@@ -1,7 +1,7 @@
 const remark = require("remark");
 const plantumlLink = require("./index");
-// const input = '<!-- ```plantuml\n(A)\n``` -->';
-const input = "<!-- ```plantuml\n[./demo.puml]\n``` -->";
+
+const input = "<!-- ```plantuml\n./single_string_a.puml\n``` -->";
 
 const output = remark()
     .use(plantumlLink)

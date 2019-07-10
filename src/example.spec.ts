@@ -2,7 +2,7 @@ import * as expect from "expect";
 const capcon = require("capture-console");
 let output = "";
 
-xdescribe("example", () => {
+describe("example", () => {
     before(() => {
         capcon.startCapture(process.stdout, function(stdout) {
             output += stdout;
@@ -12,7 +12,7 @@ xdescribe("example", () => {
     after(() => {
         capcon.stopCapture(process.stdout);
         expect(output).toContain(
-            "![](http://www.plantuml.com/plantuml/png/qt3K1000)"
+            "![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuT9mrEHoICrB0R81)"
         );
     });
 

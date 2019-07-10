@@ -16,63 +16,79 @@ describe("remark plantuml plugin", () => {
             .toString();
     }
 
-    xit("smoke", () => {
+    it("smoke", () => {
         expect(plugin).toBeTruthy();
     });
 
-    xit("process should work", () => {
+    it("process should work", () => {
         const result = process(`# h1`);
         expect(result).toBeTruthy();
     });
 
-    it("single string a", () => {
-        const content = "<!-- ```plantuml\n./demo.puml\n``` -->";
+    it("single string a - unnamed diagram", () => {
+        const content = "<!-- ```plantuml\n./single_string_a.puml\n``` -->";
         const result: string = process(content);
+
         expect(JSON.stringify(result.trim())).toEqual(
             JSON.stringify(
-                `${content}\n\n![](http://www.plantuml.com/plantuml/png/qt3K1000)`
+                `${content}\n\n![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuT9mrEHoICrB0R81)`
             )
         );
     });
 
-    xit("single string b", () => {
-        const content = "<!-- ```plantuml\n(B)\n``` -->";
+    it("single string b - named diagram", () => {
+        const content = "<!-- ```plantuml\n./single_string_b.puml\n``` -->";
         const result: string = process(content);
+
         expect(JSON.stringify(result.trim())).toEqual(
             JSON.stringify(
-                `${content}\n\n![](http://www.plantuml.com/plantuml/png/qt3I1000)`
+                `${content}\n\n![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDKGZEp4lFIGqkAGBIJbmQJffS3gbvAK0P0000)`
             )
         );
     });
 
-    xit("multiline string", () => {
-        const content = "<!-- ```plantuml\n(A)\n(B)\n``` -->";
+    it("multiline string", () => {
+        const content = "<!-- ```plantuml\n./multi_line_string.puml\n``` -->";
         const result: string = process(content);
+
         expect(JSON.stringify(result.trim())).toEqual(
             JSON.stringify(
-                `${content}\n\n![](http://www.plantuml.com/plantuml/png/qt3KvD9mqWG0)`
+                `${content}\n\n![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuT9mrEJISDBaSaZDIm7o0G00)`
             )
         );
     });
 
-    xit("should replace existing next image", () => {
-        const content = `<!-- ${T}plantuml\n(A)\n${T} -->\n![alt](http://example.com/image)`;
+    it("should support relative file placement", () => {
+        const content = "<!-- ```plantuml\n../relative_string.puml\n``` -->";
         const result: string = process(content);
+
         expect(JSON.stringify(result.trim())).toEqual(
             JSON.stringify(
-                `<!-- ${T}plantuml\n(A)\n${T} -->\n\n![](http://www.plantuml.com/plantuml/png/qt3K1000)`
+                `${content}\n\n![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuT8eIir9BCaiIrKeBYdAp4lNv798pKi1oW00)`
+            )
+        );
+    });
+
+    it("should replace existing next image", () => {
+        const content = `<!-- ${T}plantuml\n./single_string_a.puml\n${T} -->\n![alt](http://example.com/image)`;
+        const result: string = process(content);
+
+        expect(JSON.stringify(result.trim())).toEqual(
+            JSON.stringify(
+                `<!-- ${T}plantuml\n./single_string_a.puml\n${T} -->\n\n![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuT9mrEHoICrB0R81)`
             )
         );
     });
 
     it("options server", () => {
-        const content = `<!-- ${T}plantuml\n(A)\n${T} -->`;
+        const content = `<!-- ${T}plantuml\n./single_string_a.puml\n${T} -->`;
         const result: string = process(content, {
             imageUrl: "http://blinding.com/cattishness"
         });
+
         expect(JSON.stringify(result.trim())).toEqual(
             JSON.stringify(
-                `${content}\n\n![](http://blinding.com/cattishness/qt3K1000)`
+                `${content}\n\n![](http://blinding.com/cattishness/SoWkIImgAStDuT9mrEHoICrB0R81)`
             )
         );
     });
@@ -80,6 +96,7 @@ describe("remark plantuml plugin", () => {
     it("not a plantuml code", () => {
         const content = `<!-- ${T}ts\n(A)\n${T} -->`;
         const result: string = process(content);
+
         expect(JSON.stringify(result.trim())).toEqual(JSON.stringify(content));
     });
 });
